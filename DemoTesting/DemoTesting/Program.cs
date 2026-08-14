@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System.Dynamic;
 
 namespace Program
 {
@@ -20,6 +19,8 @@ namespace Program
 
             services.AddScoped<DemoTesting.Presentation.Demo>();
             services.AddScoped<DemoTesting.Business.Interfaces.IHandleUserSelection, DemoTesting.Business.HandleUserSelection>();
+            services.AddScoped<DemoTesting.Business.Interfaces.ICreditService, DemoTesting.Business.CreditService>();
+            services.AddScoped<DemoTesting.Business.Interfaces.IDepositCashService, DemoTesting.Business.DepositCashService>();
 
             return services.BuildServiceProvider();
         }
