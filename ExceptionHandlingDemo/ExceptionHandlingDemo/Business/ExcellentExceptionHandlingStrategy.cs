@@ -1,6 +1,5 @@
 ﻿using ExceptionHandlingDemo.Business.HelperClasses;
 using ExceptionHandlingDemo.Business.Interfaces;
-using ExceptionHandlingDemo.Middleware;
 using System;
 
 namespace ExceptionHandlingDemo.Business
@@ -8,22 +7,22 @@ namespace ExceptionHandlingDemo.Business
     public class ExcellentExceptionHandlingStrategy : IStrategy
     {
         private readonly MicrosoftAuthenticator _auth;
-        private readonly GlobalExceptionMiddleware _middleware;
 
-        public ExcellentExceptionHandlingStrategy(MicrosoftAuthenticator auth, GlobalExceptionMiddleware middleware)
+        public ExcellentExceptionHandlingStrategy(MicrosoftAuthenticator auth)
         {
             _auth = auth;
-            _middleware = middleware;
         }
 
         public MenuOption StrategyId => MenuOption.Excellent;
+
+        public bool UsesMiddleware => true;
 
         public void Execute()
         {
             Console.WriteLine("Please enter your User Id: ");
             int.TryParse(Console.ReadLine(), out var userId);
 
-            _middleware.Execute(() => _auth.AuthenticateUserForExcellentExample(userId));
+            _auth.Authenticate(userId);
         }
     }
 }

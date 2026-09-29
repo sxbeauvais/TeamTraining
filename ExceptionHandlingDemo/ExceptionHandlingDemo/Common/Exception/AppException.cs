@@ -19,5 +19,10 @@ namespace ExceptionHandlingDemo.Common.Exception
         {
             public ValidationException(string message) : base(message) { }
         }
+
+        public sealed class UnauthorizedAccessException : AppException
+        {
+            public UnauthorizedAccessException(string message) : base(message) { }
+        }
     }
 }

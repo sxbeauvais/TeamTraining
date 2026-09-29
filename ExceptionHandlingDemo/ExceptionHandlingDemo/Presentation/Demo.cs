@@ -22,7 +22,7 @@ namespace ExceptionHandlingDemo.Presentation
             string? userInput;
             do
             {
-                Console.Write("What would you like to do: ");
+                Console.Write("\nWhat would you like to do: ");
                 userInput = Console.ReadLine();
                 if (!string.IsNullOrEmpty(userInput))
                 {
@@ -36,7 +36,7 @@ namespace ExceptionHandlingDemo.Presentation
             Console.WriteLine("=========================================================");
             Console.WriteLine("Welcome to the Exception Handling Demo!");
             Console.WriteLine("The goal of this demo is to demonstrate proper exception handling");
-            Console.WriteLine("as well as differing levels of poor implementation. Without further");
+            Console.WriteLine("as well as differing levels of implementation. Without further");
             Console.WriteLine("a-do, lets get started!");
             Console.WriteLine("=========================================================");
             Console.WriteLine();

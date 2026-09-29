@@ -44,19 +44,14 @@ namespace ExceptionHandlingDemo.Business.HelperClasses
             
             if (id <= 0)
             {
-                throw new Common.Exception.AppException.ValidationException("User Id must be greater than 0");
-            }
-
-            if (id == 911)
-            {
-                throw new UnauthorizedAccessException($"User Id '{id}' is restricted and cannot be accessed.");
+                throw new ValidationException("User Id must be greater than 0");
             }
 
             var existingUser = users.Where(u => u.Id == id).FirstOrDefault();
 
             if(existingUser is null)
             {
-                throw new Common.Exception.AppException.NotFoundException("Authentication", id);
+                throw new KeyNotFoundException($"Key not found: {id}");
             }
 
             GreetUser(existingUser);

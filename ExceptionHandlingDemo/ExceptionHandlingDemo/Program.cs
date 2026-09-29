@@ -35,7 +35,8 @@ namespace Program
 
             services.AddScoped<MicrosoftAuthenticator>();
             services.AddScoped<AzureSql>();
-            services.AddScoped<GlobalExceptionMiddleware>();
+            services.AddScoped<AzureCosmos>();
+            services.AddScoped<IExceptionMiddleware, GlobalExceptionMiddleware>();
 
             var logFilePath = Path.Combine(AppContext.BaseDirectory, "ExceptionHandlingDemoLogs.txt");
             services.AddLogging(builder => builder.AddProvider(new FileLoggerProvider(logFilePath)));

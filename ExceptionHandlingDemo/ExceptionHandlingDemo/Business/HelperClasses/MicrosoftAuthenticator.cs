@@ -4,9 +4,11 @@ namespace ExceptionHandlingDemo.Business.HelperClasses
     public class MicrosoftAuthenticator
     {
         private readonly AzureSql _azureSql;
-        public MicrosoftAuthenticator(AzureSql azureSql)
+        private readonly AzureCosmos _cosmos;
+        public MicrosoftAuthenticator(AzureSql azureSql, AzureCosmos cosmos)
         {
             _azureSql = azureSql;
+            _cosmos = cosmos;
         }
         public void AuthenticateUserForTerribleExample()
         {
@@ -42,9 +44,9 @@ namespace ExceptionHandlingDemo.Business.HelperClasses
             _azureSql.GetUserCredentials(userId);
         }
 
-        public void AuthenticateUserForExcellentExample(int userId)
+        public void Authenticate(int userId)
         {
-            _azureSql.GetUserCredentials(userId);
+            _cosmos.GetUser(userId);
         }
     }
 }
