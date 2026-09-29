@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DemoTesting.Business;
+using DemoTesting.Business.Enums;
+using DemoTesting.Helpers;
+using DemoTesting.Helpers.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Program
 {
@@ -6,21 +10,19 @@ namespace Program
     {
         public static void Main(string[] arg)
         {
-            var serviceProvider = configureServices();
+            var serviceProvider = ConfigureServices();
+            var rewardPointsService = serviceProvider.GetRequiredService<RewardPointsService>();
+            var points = rewardPointsService.CalculatePoints(125.75m, CustomerType.Vip);
 
-            var demo = serviceProvider.GetRequiredService<DemoTesting.Presentation.Demo>();
-
-            demo.Start();
+            Console.WriteLine($"Calculated points: {points}");
         }
 
-        private static IServiceProvider configureServices()
+        private static IServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
 
-            services.AddScoped<DemoTesting.Presentation.Demo>();
-            services.AddScoped<DemoTesting.Business.Interfaces.IHandleUserSelection, DemoTesting.Business.HandleUserSelection>();
-            services.AddScoped<DemoTesting.Business.Interfaces.ICreditService, DemoTesting.Business.CreditService>();
-            services.AddScoped<DemoTesting.Business.Interfaces.IDepositCashService, DemoTesting.Business.DepositCashService>();
+            services.AddScoped<IBonusMultiplierProvider, BonusMultiplierProvider>();
+            services.AddScoped<RewardPointsService>();
 
             return services.BuildServiceProvider();
         }
