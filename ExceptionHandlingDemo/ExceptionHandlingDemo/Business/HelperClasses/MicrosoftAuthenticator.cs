@@ -31,5 +31,20 @@ namespace ExceptionHandlingDemo.Business.HelperClasses
                 throw ex;
             }
         }
+
+        public void AuthenticateUserForOkExample()
+        {
+            _azureSql.GetUserCredentialsForOkExample();
+        }
+
+        public void AuthenticateUserForGoodExample(int userId)
+        {
+            _azureSql.GetUserCredentials(userId);
+        }
+
+        public void AuthenticateUserForExcellentExample(int userId)
+        {
+            _azureSql.GetUserCredentials(userId);
+        }
     }
 }
